@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#050706">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>ARES V3</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+<header id="topbar">
+  <button class="back hidden" id="backBtn">‹</button>
+  <div class="brand" id="brand">
+    <div class="mark">▼</div>
+    <strong>ARES <span>V3</span></strong>
+  </div>
+  <h1 id="pageTitle"></h1>
+  <button class="gear" id="gearBtn">⚙</button>
+</header>
+
+<main>
+<section id="home" class="screen active">
+  <div class="exercise-grid">
+    <button class="exercise-card tactical-card reaction selected" data-mode="reaction">
+      <div class="tactical-art" aria-hidden="true">
+        <div class="grid-lines"></div>
+        <div class="art-symbol">⌖</div>
+        <div class="art-caption">CIBLE / DÉPART</div>
+      </div>
+      <div class="shade"></div>
+      <div class="card-text"><h2>REACTION</h2><p>TESTEZ VOTRE RÉACTIVITÉ</p></div>
+    </button>
+    <button class="exercise-card tactical-card cadence" data-mode="cadence">
+      <div class="tactical-art" aria-hidden="true">
+        <div class="grid-lines"></div>
+        <div class="art-symbol">◴</div>
+        <div class="art-caption">RYTHME / CONTRÔLE</div>
+      </div>
+      <div class="shade"></div>
+      <div class="card-text"><h2>CADENCE</h2><p>MAÎTRISEZ VOTRE RYTHME</p></div>
+    </button>
+    <button class="exercise-card tactical-card vehicle" data-mode="vehicle">
+      <div class="tactical-art" aria-hidden="true">
+        <div class="grid-lines"></div>
+        <div class="art-symbol">▰</div>
+        <div class="art-caption">COUVERTURE / PILIERS</div>
+      </div>
+      <div class="shade"></div>
+      <div class="card-text"><h2>VÉHICULE</h2><p>SÉQUENCES AUTOUR DU VÉHICULE</p></div>
+    </button>
+    <button class="exercise-card tactical-card vcqb" data-mode="vcqb">
+      <div class="tactical-art" aria-hidden="true">
+        <div class="grid-lines"></div>
+        <div class="art-symbol">▥</div>
+        <div class="art-caption">ANGLES / ESPACE CONFINÉ</div>
+      </div>
+      <div class="shade"></div>
+      <div class="card-text"><h2>VCQB</h2><p>COMBAT EN ESPACE CONFINÉ</p></div>
+    </button>
+  </div>
+</section>
+
+<section id="setup" class="screen">
+  <p class="subtitle" id="setupSubtitle">SÉLECTIONNEZ VOTRE PARCOURS</p>
+  <div id="setupVisual"></div>
+  <div class="option-box" id="setupOptions"></div>
+  <div id="triggerTestBox" class="trigger-test-box">
+    <button class="test-trigger" id="testTriggerBtn">ESSAYER LA DÉTENTE</button>
+    <div id="triggerTestStatus" class="trigger-test-status">Teste la détection avant de commencer</div>
+  </div>
+  <button class="start" id="startBtn">DÉMARRER</button>
+</section>
+
+<section id="exercise" class="screen exercise-screen">
+  <button id="quitExerciseBtn" class="quit-exercise">✕ QUITTER</button>
+  <div class="exercise-head">
+    <div id="exerciseMode">RÉACTION</div>
+    <div id="exerciseSeries">SÉRIE 1 / 3</div>
+  </div>
+  <button id="soundToggle" class="sound">◖))</button>
+  <div class="exercise-center">
+    <div id="readyText" class="ready">SOYEZ PRÊT</div>
+    <div id="commandText" class="command">BIP</div>
+    <div id="shotText" class="shotText"></div>
+    <div id="liveTime" class="live-time" aria-live="polite"></div>
+    <div id="dots" class="dots"></div>
+  </div>
+  <div class="bottom-status">
+    <div class="green-line"></div>
+    <span id="statusText">EN ATTENTE DU DÉPART</span>
+  </div>
+  <button id="stopBtn" class="stopZone">STOP</button>
+</section>
+
+<section id="stats" class="screen">
+  <div class="tabs">
+    <button data-stat="reaction" class="active">RÉACTION</button>
+    <button data-stat="cadence">CADENCE</button>
+    <button data-stat="vehicle">VÉHICULE</button>
+    <button data-stat="vcqb">VCQB</button>
+  </div>
+  <div id="statsBody"></div>
+</section>
+
+<section id="settings" class="screen">
+  <div class="settings-menu">
+    <button data-open="micro"><b>🎙 MICROPHONE</b><small>Calibration, sensibilité</small><span>›</span></button>
+    <button><b>🔊 AUDIO</b><small>Volume, packs de voix</small><span>›</span></button>
+    <button><b>▣ AFFICHAGE</b><small>Thème, luminosité</small><span>›</span></button>
+    <button><b>⚙ PARAMÈTRES GÉNÉRAUX</b><small>Langue, unités, etc.</small><span>›</span></button>
+    <button><b>▣ MODE ADMINISTRATION</b><small>Accès protégé par PIN</small><span>›</span></button>
+  </div>
+  <div class="version">VERSION 3.2.0 ALPHA</div>
+</section>
+
+<section id="micro" class="screen">
+  <div class="micro-row"><span>STATUT</span><b id="microStatus">Non calibré</b></div>
+  <div class="micro-panel">
+    <label>NIVEAU DU MICRO</label>
+    <div class="meter" id="meter"></div>
+  </div>
+  <div class="micro-panel">
+    <label>SENSIBILITÉ <span id="sensValue">75%</span></label>
+    <input id="sensitivity" type="range" min="20" max="95" value="75">
+  </div>
+  <div class="micro-row"><span>FILTRE ANTI-BRUIT</span><b>Moyen⌄</b></div>
+  <button class="start" id="calibrateBtn">RE-CALIBRER LE MICRO</button>
+  <p class="hint">Faites-le dans un environnement calme</p>
+</section>
+</main>
+
+<nav id="bottomNav">
+  <button data-nav="home" class="active"><span>⊕</span>ENTRAÎNEMENT</button>
+  <button data-nav="stats"><span>▥</span>STATS</button>
+  <button data-nav="stats"><span>◴</span>HISTORIQUE</button>
+  <button data-nav="settings"><span>⚙</span>RÉGLAGES</button>
+</nav>
+<script src="app.js"></script>
+</div>
+</body>
+</html>
